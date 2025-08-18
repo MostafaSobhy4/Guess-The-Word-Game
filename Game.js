@@ -29,7 +29,7 @@ function generateInputs() {
         if (i !== 0) {
             span.classList.add("disabled-inputs")
         }
-        span.appendChild(document.createTextNode(`try${i+1}`));
+        span.appendChild(document.createTextNode(`Try${i+1}`));
         for (let j = 0; j < NumOfLets; j++) {
             let input = document.createElement("input");
             input.id = `guess-${i+1}-letter-${j+1}`
