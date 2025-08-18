@@ -1,0 +1,161 @@
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: ;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #eee;
+    text-align: center;
+    margin: 0;
+}
+
+h1 {
+    background-color: white;
+    margin: 0;
+    padding: 10px;
+}
+
+.game-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    padding-top: 50px;
+    margin: 0 20px;
+
+    .game-keyColors {
+        div {
+            text-align: left;
+            background-color: white;
+            padding: 10px;
+            margin-bottom: 10px;
+            font-weight: bold;
+            position: relative;
+            padding-left: 35px;
+
+            &::before {
+                content: "";
+                position: absolute;
+                display: block;
+                margin-right: 5px;
+                width: 20px;
+                height: 20px;
+                left: 5px;
+            }
+
+            &:first-of-type::before {
+                background-color: blue;
+            }
+            &:nth-of-type(2)::before {
+                background-color: rgb(192, 100, 115);
+            }
+            &:nth-of-type(3)::before {
+                background-color: red;
+            }
+        }
+    }
+
+    .game-area {
+        width: 380px;
+
+        button {
+            padding: 10px 0;
+            margin-right: 0;
+            color: white;
+            font-weight: bold;
+            border: 0;
+            border-radius: 5px;
+        }
+
+        .buttons {
+            .check {
+                width: calc(100% - 100px);
+                background-color: #e09b2c;
+                cursor: pointer;
+            }
+            .hints {
+                width: 95px;
+                background-color: gray;
+                cursor: pointer;
+            }
+            button:disabled {
+                background-color: black;
+                opacity: 0.4;
+                cursor: no-drop;
+            }
+        }
+
+        .message {
+            text-align: center;
+            font-weight: bold;
+            font-size: 30px;
+            margin-top: 19px;
+            span {
+                display: block;
+                font-size: 50px;
+                color: blue;
+                text-transform: capitalize;
+                margin-top: 10px;
+            }
+        }
+
+        .tries {
+            margin-bottom: 20px;
+
+            span {
+                display: flex;
+                width: 100%;
+                text-align: start;
+                margin-bottom: 10px;
+                font-weight: bold;
+                align-items: center;
+
+            }
+            .disabled-inputs{
+                opacity: 0.5;
+                pointer-events: none;
+            }
+
+            input {
+                padding: 10px;
+                margin-left: 10px;
+                width: 100%;
+                font-size: xx-large;
+                text-align: center;
+                color: black;
+                border: 0;
+                outline: 0;
+                border-radius: 3px;
+                border-bottom: 2px solid black;
+                &.yes-in-place{
+                    background-color: blue;
+                    color: white;
+                }
+                &.not-in-place{
+                    background-color: rgb(192, 100, 115);
+                    color: white;
+                }
+                &.no{
+                    background-color: red;
+                    color: white;
+                }
+                &.space{
+                    background-color: rgb(61, 60, 60);
+                }
+            }
+        }
+    }
+}
+
+footer {
+    background-color: #333;
+    padding: 10px;
+    color: white;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
