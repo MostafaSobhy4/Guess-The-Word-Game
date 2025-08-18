@@ -3,12 +3,15 @@
 }
 
 :root {
-    --primary-color: ;
+    --yes-in-place: blue;
+    --not-in-place: rgb(192, 100, 115);
+    --no: red;
+    --color-bg: #eee;
 }
 
 body {
     font-family: Arial, Helvetica, sans-serif;
-    background-color: #eee;
+    background-color: var(--color-bg);
     text-align: center;
     margin: 0;
 }
@@ -44,16 +47,17 @@ h1 {
                 width: 20px;
                 height: 20px;
                 left: 5px;
+                border-radius: 50%;
             }
 
             &:first-of-type::before {
-                background-color: blue;
+                background-color: var(--yes-in-place);
             }
             &:nth-of-type(2)::before {
-                background-color: rgb(192, 100, 115);
+                background-color: var(--not-in-place);
             }
             &:nth-of-type(3)::before {
-                background-color: red;
+                background-color: var(--no);
             }
         }
     }
@@ -96,7 +100,7 @@ h1 {
             span {
                 display: block;
                 font-size: 50px;
-                color: blue;
+                color: var(--yes-in-place);
                 text-transform: capitalize;
                 margin-top: 10px;
             }
@@ -131,15 +135,15 @@ h1 {
                 border-radius: 3px;
                 border-bottom: 2px solid black;
                 &.yes-in-place{
-                    background-color: blue;
+                    background-color: var(--yes-in-place);
                     color: white;
                 }
                 &.not-in-place{
-                    background-color: rgb(192, 100, 115);
+                    background-color: var(--not-in-place);
                     color: white;
                 }
                 &.no{
-                    background-color: red;
+                    background-color: var(--no);
                     color: white;
                 }
                 &.space{
