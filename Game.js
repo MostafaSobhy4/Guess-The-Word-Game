@@ -1,6 +1,40 @@
 let gameName = "Guess The Word";
 document.title = gameName;
 
+let toggleBtn = document.querySelector(".night-mode");
+
+toggleBtn.onclick = function () {
+    if (toggleBtn.classList.contains("night-mode")) {
+        // Night Mode
+        document.querySelector("h1").style.color = "white";
+        document.querySelector("h2").style.color = "white";
+        document.querySelector(".message").style.color = "white";
+        document.querySelector("h1").style.backgroundColor = "#333";
+        document.body.style.backgroundColor = "black";
+        document.querySelectorAll(".tries span").forEach((span) => {
+            span.style.color = "white";
+        });
+        // let btn = document.querySelector(".check");
+        // if (btn.disabled) {
+        //     btn.style.setProperty("background-color", "white", "important");
+        // }
+        toggleBtn.innerHTML = `<i class="fa-solid fa-sun"></i>`;
+        toggleBtn.className = "sun-mode";
+    } else {
+        // Day Mode
+        document.querySelector("h1").style.color = "black";
+        document.querySelector("h2").style.color = "black";
+        document.querySelector("h1").style.backgroundColor = "white";
+        document.body.style.backgroundColor = "#eee";
+        document.querySelectorAll(".tries span").forEach((span) => {
+            span.style.color = "black";
+        });
+        toggleBtn.innerHTML = `<i class="fa-solid fa-moon"></i>`;
+        toggleBtn.className = "night-mode";
+    }
+};
+
+
 document.querySelector("h1").innerHTML = gameName;
 document.querySelector("footer").innerHTML = `${gameName} Made By Mostafa Sobhy`;
 
@@ -10,7 +44,20 @@ let CurrTry = 1;
 let Hints = 3;
 
 let wordToGuess = "";
-const words = ["Effort", "Galaxy", "Iconic", "Laptop", "Images", "Eagles"];
+const words = [
+  "Effort", "Galaxy", "Iconic", "Laptop", "Images", "Eagles",
+  "Bright", "Silent", "Wonder", "Talent", "Secret", "Future",
+  "Golden", "Spirit", "Vision", "Master", "Nature", "Silver",
+  "Modern", "Travel", "Friend", "Puzzle", "Simple", "Strong",
+  "Planet", "Rocket", "Letter", "Animal", "Bridge", "Castle",
+  "Dreams", "Forest", "Action", "Winner", "Shadow", "Energy",
+  "Magnet", "Design", "Course", "Circle", "Flight", "Frozen",
+  "Pretty", "Public", "Random", "Stream", "TigerS", "Window",
+  "Bottle", "Candle", "Driver", "Family", "Guitar", "Honest",
+  "Island", "Jungle", "Kitten", "Little", "Mobile", "Number",
+  "Orange", "Pirate", "Quiver", "Rabbit", "School", "Travel",
+  "United", "Velvet", "Writer", "Yellow", "Zebras"
+];
 const randomIdx = Math.floor(Math.random() * words.length);
 wordToGuess = words[randomIdx];
 let messageArea = document.querySelector(".message");
@@ -112,7 +159,9 @@ function handleGuesses() {
     }
 
     if (successGuess) {
+        const successSound = new Audio("sounds/win.mp3");
         messageArea.innerHTML = `You Win The Word Is <span>${wordToGuess}</span>`;
+        successSound.play();
         let buttons = document.querySelectorAll(".tries > span");
         buttons.forEach((butt) => (butt.classList.add("disabled-inputs")));
         GuessButton.disabled = true;
@@ -132,8 +181,10 @@ function handleGuesses() {
             nextTryEl.querySelectorAll("input").forEach(inp => inp.removeAttribute("disabled"));
             game_area.children[CurrTry - 1].children[0].focus();
         } else {
+            const failSound = new Audio("sounds/lose.mp3");
             messageArea.innerHTML = `You Lose The Word Is <span>${wordToGuess}</span>`;
             GuessButton.disabled = true;
+            failSound.play();
         }
     }
 
