@@ -14,10 +14,6 @@ toggleBtn.onclick = function () {
         document.querySelectorAll(".tries span").forEach((span) => {
             span.style.color = "white";
         });
-        // let btn = document.querySelector(".check");
-        // if (btn.disabled) {
-        //     btn.style.setProperty("background-color", "white", "important");
-        // }
         toggleBtn.innerHTML = `<i class="fa-solid fa-sun"></i>`;
         toggleBtn.className = "sun-mode";
     } else {
@@ -44,22 +40,16 @@ let CurrTry = 1;
 let Hints = 3;
 
 let wordToGuess = "";
-const words = [
-  "Effort", "Galaxy", "Iconic", "Laptop", "Images", "Eagles",
-  "Bright", "Silent", "Wonder", "Talent", "Secret", "Future",
-  "Golden", "Spirit", "Vision", "Master", "Nature", "Silver",
-  "Modern", "Travel", "Friend", "Puzzle", "Simple", "Strong",
-  "Planet", "Rocket", "Letter", "Animal", "Bridge", "Castle",
-  "Dreams", "Forest", "Action", "Winner", "Shadow", "Energy",
-  "Magnet", "Design", "Course", "Circle", "Flight", "Frozen",
-  "Pretty", "Public", "Random", "Stream", "TigerS", "Window",
-  "Bottle", "Candle", "Driver", "Family", "Guitar", "Honest",
-  "Island", "Jungle", "Kitten", "Little", "Mobile", "Number",
-  "Orange", "Pirate", "Quiver", "Rabbit", "School", "Travel",
-  "United", "Velvet", "Writer", "Yellow", "Zebras"
-];
-const randomIdx = Math.floor(Math.random() * words.length);
-wordToGuess = words[randomIdx];
+let words = [];
+fetch("words.json")
+.then(resp => resp.json())
+.then(data => {
+    words = data;
+    const randomIdx = Math.floor(Math.random() * words.length);
+    wordToGuess = words[randomIdx];
+    console.log(words);
+});
+
 let messageArea = document.querySelector(".message");
 
 let hintNums = document.querySelector(".hintNums");
@@ -146,11 +136,11 @@ function handleGuesses() {
         const actualLetter = wordToGuess[i - 1].toLowerCase();
         if (letter === actualLetter) {
             inputField.classList.add("yes-in-place");
-        } else if (wordToGuess.includes(letter) && (letter !== "" || letter !== " ")) {
-            inputField.classList.add("not-in-place");
-            successGuess = false;
         } else if (letter === "" || letter === " ") {
             inputField.classList.add("space");
+            successGuess = false;
+        } else if (wordToGuess.includes(letter)) {
+            inputField.classList.add("not-in-place");
             successGuess = false;
         } else {
             inputField.classList.add("no");
@@ -214,4 +204,3 @@ function getHinit() {
 }
 
 window.onload = generateInputs;
-

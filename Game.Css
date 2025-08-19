@@ -4,7 +4,7 @@
 
 :root {
     --yes-in-place: blue;
-    --not-in-place: rgb(192, 100, 115);
+    --not-in-place: rgb(5, 189, 5);
     --no: red;
     --color-bg: #eee;
 }
@@ -20,6 +20,9 @@ h1 {
     background-color: white;
     margin: 0 !important;
     padding: 10px;
+    @media (max-width: 768px) {
+        font-size: 25px !important;
+    }
 }
 
 .night-mode, .sun-mode {
@@ -32,8 +35,19 @@ h1 {
     align-items: flex-start;
     padding-top: 50px;
     margin: 0 20px;
+    @media (max-width: 768px) {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 630px;
+    }
 
     .game-keyColors {
+        @media (max-width: 768px) {
+            display: contents;
+            width: 300px;
+        }
         div {
             text-align: left;
             background-color: white;
@@ -68,6 +82,10 @@ h1 {
 
     .game-area {
         width: 380px;
+
+        @media (max-width: 768px) {
+            width: 300px;
+        }
 
         button {
             padding: 10px 0;
