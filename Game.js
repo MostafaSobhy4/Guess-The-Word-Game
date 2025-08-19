@@ -175,6 +175,9 @@ function handleGuesses() {
             messageArea.innerHTML = `You Lose The Word Is <span>${wordToGuess}</span>`;
             GuessButton.disabled = true;
             failSound.play();
+            let playAgain = document.querySelector(".PAmessage");
+            playAgain.innerHTML = `<a href="index.html">Click To Play Again😊</a>`;
+            playAgain.style.fontSize = "18px";
         }
     }
 
