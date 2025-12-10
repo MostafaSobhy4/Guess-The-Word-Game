@@ -19,4 +19,5 @@ The player tries to guess the hidden word within a limited number of tries and h
 - JavaScript
 
 # Live Demo
-Check it out here: [Word Guessing Game] (https://mostafasobhy4.github.io/Guess-The-Word-Game/)
+Check it out here: [Word Guessing Game](https://mostafasobhy4.github.io/Guess-The-Word-Game/)
+
